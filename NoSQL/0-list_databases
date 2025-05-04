@@ -1,2 +1,5 @@
 // 0-list_databases
-printjson(db.adminCommand('listDatabases'))
+var dbs = db.adminCommand('listDatabases');
+dbs.databases.forEach(function(database) {
+    print(database.name + "\t" + (database.sizeOnDisk / (1024 * 1024 * 1024)).toFixed(3) + "GB");
+});
